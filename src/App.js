@@ -35,21 +35,22 @@ class App extends Component{
     });
 
     //create blobClient for container
+    console.log( "container created")
 
     const blobClient = containerClient.getBlockBlobClient(this.state.file.name);
-
+    console.log( " file uploadname = "+ blobClient)
     //set mimetype as determined from browser with file upload control
 
     const options = { blobHTTPHeader: { blobContentType: this.state.file.type}};
 
     //upload file
     await blobClient.uploadBrowserData(this.state.file,options);
+    console.log( " file uploadname = uploading")
   };
   render(){
    return (
     <div className="app">
-      <div>
-    
+      <div>    
       <input onChange={this.onFileChange}  type="file" /> 
         <button onClick={() => this.uploadFile()}>Upload</button>
       </div>
